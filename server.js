@@ -25,6 +25,16 @@ app.get('/api/movies', (req, res) => {
   });
 });
 
+app.delete('/api/movies/:id', (req, res) => {
+  connection.query(`DELETE id FROM movies`, (err, result) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+      return;
+    }
+    res.json(result);
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`This is the port localhost${PORT}`)
 })
